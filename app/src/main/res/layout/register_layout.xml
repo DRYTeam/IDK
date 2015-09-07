@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:paddingBottom="2dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/register_mainLayout">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:padding="7dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/register_inputsLayout">
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="35dp"
+            android:id="@+id/register_txbUsername"
+            android:background="@drawable/text_box1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.13"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:hint="שם משתמש"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="35dp"
+            android:id="@+id/register_txbPassword"
+            android:background="@drawable/text_box1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.13"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:hint="סיסמא"
+            android:password="true"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="35dp"
+            android:id="@+id/register_txbConfirmPassword"
+            android:background="@drawable/text_box1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.13"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:hint="אימות סיסמא"
+            android:password="true"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="35dp"
+            android:id="@+id/register_txbEmail"
+            android:background="@drawable/text_box1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.13"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:hint="דואר אלקטרוני"
+            android:singleLine="true" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:id="@+id/register_spinFacility"
+            android:layout_below="@+id/register_inputsLayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:prompt="@string/facility_spinner_title"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copy_rights"
+        android:id="@+id/register_copyRightsText"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="הרשם"
+        android:id="@+id/register_btnRegister"
+        android:background="@drawable/button"
+        android:layout_below="@+id/register_inputsLayout"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:layout_width="165dp"
+        android:layout_height="151dp"
+        android:id="@+id/register_logo"
+        android:background="@drawable/logodry"
+        android:layout_above="@+id/register_inputsLayout"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

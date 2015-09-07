@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_light"
+    android:weightSum="1"
+    android:id="@+id/profile_main">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:weightSum="1"
+        android:background="#ffffffff"
+        android:gravity="center_vertical|right"
+        android:id="@+id/profile_topBar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.49"
+            android:gravity="center_vertical"
+            android:paddingRight="15px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="שם משתמש"
+                android:id="@+id/profile_username_text"
+                android:layout_gravity="right"
+                android:textColor="#ff545454"
+                android:paddingBottom="5px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="יסודי"
+                android:id="@+id/prodile_facility_text"
+                android:layout_gravity="right"
+                android:textColor="@color/primary_material_light"
+                android:paddingRight="15px" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="250px"
+            android:layout_height="250px"
+            android:id="@+id/profile_image"
+            android:background="#ff4a4a4a"
+            android:layout_marginRight="10px" />
+    </LinearLayout>
+</LinearLayout>

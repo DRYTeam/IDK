@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/newpostbackground"
+    android:weightSum="1"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|right">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="צרף תמונה"
+            android:id="@+id/comment_btnAddimage"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            android:textColor="#f5f4f4"
+            android:background="#f48852" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/comment_image"
+            android:src="#585858"
+            android:scaleType="fitXY"
+            android:layout_marginRight="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="440dp"
+            android:id="@+id/comment_contect"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:hint="כתוב תגובה"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            android:textColor="#ff0c0c0c"
+            android:autoText="false"
+            android:textColorHint="#ff3f3f3f"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="top"
+            android:layout_weight="11.47" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/comment_btnCancel"
+                android:background="#ffff605b"
+                android:layout_weight="0.50"
+                android:text="בטל" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/comment_btnSend"
+                android:background="#ff77d025"
+                android:layout_weight="0.5"
+                android:text="אישור" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

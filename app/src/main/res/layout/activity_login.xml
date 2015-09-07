@@ -1,0 +1,133 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="@drawable/background"
+    android:paddingBottom="2dp"
+    android:id="@+id/login_mainLayout">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center|fill_horizontal|center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/login_layout"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:id="@+id/login_txbUsername"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/login_username"
+            android:gravity="center"
+            android:background="@drawable/text_box1"
+            android:text="dani"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:id="@+id/login_txbPassword"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/login_txbUsername"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/login_password"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/text_box1"
+            android:password="true"
+            android:text="dani1234"
+            android:singleLine="true" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="זכור אותי"
+            android:id="@+id/login_cbxRememberMe"
+            android:layout_gravity="center_horizontal"
+            style="@android:style/Widget.Holo.Light.CompoundButton.CheckBox"
+            android:checked="false" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copy_rights"
+        android:id="@+id/register_copyRightsText"
+        android:textColor="#ffffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:id="@+id/login_btnLogin"
+        android:background="@drawable/go_button_selector"
+        android:layout_alignBottom="@+id/login_layout"
+        android:layout_toRightOf="@+id/login_layout"
+        android:layout_toEndOf="@+id/login_layout"
+        android:layout_marginBottom="4dp" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="160dp"
+        android:id="@+id/login_imgLogo"
+        android:background="@drawable/logodry"
+        android:layout_above="@+id/login_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_linksLayout"
+        android:layout_below="@+id/login_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1.48"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/login_imgLine"
+            android:background="@drawable/beautiful_line" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="הירשם עכשיו"
+        android:id="@+id/login_btnRegister"
+        android:background="@drawable/button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/login_linksLayout"
+        android:layout_marginTop="15dp"
+        android:textColor="#ffffffff"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="המשך כאורח"
+        android:id="@+id/login_btnGuest"
+        android:background="@drawable/button"
+        android:layout_marginTop="13dp"
+        android:textColor="#ffffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/login_btnRegister"
+        android:layout_alignLeft="@+id/login_btnRegister"
+        android:layout_alignStart="@+id/login_btnRegister" />
+
+</RelativeLayout>

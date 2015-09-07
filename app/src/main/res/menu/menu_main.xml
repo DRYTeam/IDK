@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/menu_add_photo"
+        android:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_newpic"
+                android:icon="@drawable/ic_action_camera"
+                android:title="צלם תרגיל"/>
+
+            <item
+                android:id="@+id/action_loadpic"
+                android:icon="@drawable/ic_action_attachment"
+                android:title="טען מהגלריה"/>
+
+            <item
+                android:id="@+id/action_newpost"
+                android:icon="@drawable/ic_action_edit"
+                android:title="פוסט טקסט"/>
+
+        </menu>
+    </item>
+
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" />
+
+    <item android:id="@+id/action_logout" android:title="@string/menu_logout"
+        android:orderInCategory="100" />
+</menu>

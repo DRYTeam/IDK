@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp"
+    android:layout_gravity="center_horizontal"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="כותרת"
+            android:background="#ffd3d3d3"
+            android:textSize="20dp"
+            android:textColor="#ff161616" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="מתמטיקה"
+                android:id="@+id/subject_text"
+                android:layout_gravity="center_horizontal|right"
+                android:textSize="15dp"
+                android:textColor="#ff9aa1ff" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="1"
+                android:gravity="right"
+                android:padding="2dp"
+                android:id="@+id/TagsLayout_post">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/page_image_content"
+            android:background="#000000"
+            android:layout_gravity="right"
+            android:layout_margin="2dp"
+            android:visibility="visible"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="תיאור"
+            android:background="#fff0f0f0"
+            android:textSize="12dp"
+            android:textColor="#ff404040"
+            android:minHeight="60dp" />
+
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/comments_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" תגובות"
+                android:textSize="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/postcard_click_selector" />
+
+            <TextView
+                android:id="@+id/text_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="שתף"
+                android:textSize="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/comments_text"
+                android:layout_toStartOf="@+id/comments_text"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/holo_blue_dark" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_alignBottom="@+id/post_share"
+                android:layout_centerVertical="true"
+                android:gravity="left">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/voteup_action_post"
+                    android:src="@drawable/ic_hardware_keyboard_arrow_up" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/votedown_action_post"
+                    android:src="@drawable/ic_votedown"
+                    android:paddingLeft="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="New Text"
+                    android:id="@+id/votesup_post"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:textStyle="bold"
+                    android:textColor="#ff404040"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

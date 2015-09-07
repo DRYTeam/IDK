@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IDK</string>
+    <string name="copy_rights">DRY Corporations ©</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="login_username">שם משתמש</string>
+    <string name="login_password">סיסמא</string>
+    <string name="login_register">הרשמה</string>
+    <string name="login_guest">התחבר כאורח</string>
+
+    <string name="toast_error">שגיאה בקלט</string>
+    <string name="toast_login_error">שם משתמש או סיסמה שגויים</string>
+
+    <string name="menu_add_photo">הוסף תרגיל(מצלמה)</string>
+    <string name="menu_logout">התנתק</string>
+
+    <string name="facility_spinner_title">מוסד לימודים:</string>
+    <string name="fac_elm">יסודי</string>
+    <string name="fac_mid">חטיבה</string>
+    <string name="fac_high">תיכון</string>
+    <string name="fac_uni">אקדמאי</string>
+
+    <string name="post_comment">תגובות</string>
+
+    <drawable name="tran">#00ffffff</drawable>
+    <drawable name="gray">#ca9c9c9c</drawable>
+
+    <string-array name="newcomment_dialog">
+        <item>צלם פתרון</item>
+        <item>טען מהגלריה</item>
+    </string-array>
+
+</resources>
