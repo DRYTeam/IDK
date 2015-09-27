@@ -284,7 +284,7 @@ public class MainActivity extends Activity {
                 } catch (Exception e) {
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
                             .show();
-                    Log.d("loadImageError",e.getMessage());
+                    Log.d("loadImageError", e.getMessage());
                     decision=0;
                 }
                 break;
@@ -328,7 +328,7 @@ public class MainActivity extends Activity {
                         user.setNUM(userObj.getInt("Num"));
                         user.setUsername(userObj.getString("Username"));
                         topic.setUsername(user);
-                        Log.d("username",topic.getUsername().getUsername());
+                        Log.d("username", topic.getUsername().getUsername());
                         ArrayList<Tag> tagsList = new ArrayList<>();
                         ArrayList<Comment> commentsList = new ArrayList<>();
                         try {

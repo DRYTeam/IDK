@@ -50,7 +50,9 @@
                     android:background="#fff0f0f0"
                     android:textSize="12dp"
                     android:textColor="#ff404040"
-                    android:minHeight="60dp" />
+                    android:minHeight="60dp"
+                    android:maxLines="4"
+                    android:ellipsize="end" />
 
                 <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="30dp"

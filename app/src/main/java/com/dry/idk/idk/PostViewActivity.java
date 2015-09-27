@@ -8,11 +8,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +57,9 @@ public class PostViewActivity  extends Activity{
     ImageView post_votedown;
     int SelectedTopicNum;
     Topic currentTopic;
+
+    boolean isInfoLonest = false;
+    boolean isOpen = false;
 
     List<Comment> commentsLoaded;
     //SwipeRefreshLayout swipeLayout;
@@ -107,6 +114,53 @@ public class PostViewActivity  extends Activity{
             updateListFromDB();
             post_title.setText(currentTopic.getTitle());
             post_info.setText(currentTopic.getContent());
+
+            ViewTreeObserver vto = post_info.getViewTreeObserver();
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    Layout l = post_info.getLayout();
+                    if (l != null) {
+                        int lines = l.getLineCount();
+                        if (lines > 0) {
+                            for(int d = 0; d < lines;d++) {
+                                if (l.getEllipsisCount(d) > 0)
+                                    isInfoLonest = true;
+                            }
+                        } else {
+                            if (l.getEllipsisCount(0) > 0)
+                                isInfoLonest = true;
+                        }
+                    }
+
+                    Log.d("longText",String.valueOf(isInfoLonest));
+
+                    if(isInfoLonest){
+                            post_info.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if(!isOpen) {
+                                        post_info.setMaxLines(Integer.MAX_VALUE);
+                                        post_info.setEllipsize(null);
+                                        post_info.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+                                        isOpen = true;
+                                    } else {
+                                        post_info.setMaxLines(4);
+                                        post_info.setEllipsize(TextUtils.TruncateAt.END);
+                                        float density = getResources().getDisplayMetrics().density;
+                                        post_info.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, (int)(60 * density + 0.5f)));
+                                        isOpen = false;
+                                    }
+                                }
+                            });
+                    }
+
+                    ViewTreeObserver obs = post_info.getViewTreeObserver();
+                    obs.removeOnGlobalLayoutListener(this);
+                }
+            });
+
+
             if(currentTopic.getImage() == null){
                 post_image.setVisibility(View.GONE);
             } else {
@@ -147,6 +201,96 @@ public class PostViewActivity  extends Activity{
                     break;
 
             }
+
+            post_voteup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(currentTopic.getUserVoteValue() != 1){
+                        currentTopic.setVotesup(currentTopic.getVotesup()-currentTopic.getUserVoteValue());
+                        currentTopic.setUserVoteValue(1);
+                        currentTopic.setVotesup(currentTopic.getVotesup()+1);
+                        String sign = "";
+                        if(currentTopic.getVotesup() > 0)
+                            sign = "+";
+                        post_votes.setText(sign+String.valueOf(currentTopic.getVotesup()));
+                        ((ImageView) v).setImageResource(R.drawable.ic_voteup_checked);
+                        post_votedown.setImageResource(R.drawable.ic_votedown);
+                    } else {
+                        currentTopic.setUserVoteValue(0);
+                        currentTopic.setVotesup(currentTopic.getVotesup()-1);
+                        String sign = "";
+                        if(currentTopic.getVotesup() > 0)
+                            sign = "+";
+                        post_votes.setText(sign+String.valueOf(currentTopic.getVotesup()));
+                        ((ImageView) v).setImageResource(R.drawable.ic_hardware_keyboard_arrow_up);
+                        post_votedown.setImageResource(R.drawable.ic_votedown);
+                    }
+                    try {
+                        HttpClient client = new DefaultHttpClient();
+                        HttpGet request = new HttpGet();
+                        HttpResponse response;
+                        try {
+                            response = null;
+                            request.setURI(new URI("http://drycorporations.wc.lt/UserVoteUp.php?user="+GlobalVar.LoggedInUser.getNUM()+"&topic="+currentTopic.getNUM()+"&value="+currentTopic.getUserVoteValue()));
+                            response = client.execute(request);
+                            String result = GlobalMethods.convertStreamToString(response.getEntity().getContent());
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (Exception ex) {
+
+                    }
+                }
+            });
+
+            post_votedown.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (currentTopic.getUserVoteValue() != -1) {
+                        currentTopic.setVotesup(currentTopic.getVotesup() - currentTopic.getUserVoteValue());
+                        currentTopic.setUserVoteValue(-1);
+                        currentTopic.setVotesup(currentTopic.getVotesup() - 1);
+                        String sign = "";
+                        if (currentTopic.getVotesup() > 0)
+                            sign = "+";
+                        post_votes.setText(sign + String.valueOf(currentTopic.getVotesup()));
+                        ((ImageView) v).setImageResource(R.drawable.ic_votedown_checked);
+                        post_voteup.setImageResource(R.drawable.ic_hardware_keyboard_arrow_up);
+                    } else {
+                        currentTopic.setUserVoteValue(0);
+                        currentTopic.setVotesup(currentTopic.getVotesup() + 1);
+                        String sign = "";
+                        if (currentTopic.getVotesup() > 0)
+                            sign = "+";
+                        post_votes.setText(sign + String.valueOf(currentTopic.getVotesup()));
+                        ((ImageView) v).setImageResource(R.drawable.ic_votedown);
+                        post_voteup.setImageResource(R.drawable.ic_hardware_keyboard_arrow_up);
+                    }
+                    try {
+                        HttpClient client = new DefaultHttpClient();
+                        HttpGet request = new HttpGet();
+                        HttpResponse response;
+                        try {
+                            response = null;
+                            request.setURI(new URI("http://drycorporations.wc.lt/UserVoteUp.php?user=" + GlobalVar.LoggedInUser.getNUM() + "&topic=" + currentTopic.getNUM() + "&value=" + currentTopic.getUserVoteValue()));
+                            response = client.execute(request);
+                            String result = GlobalMethods.convertStreamToString(response.getEntity().getContent());
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (Exception ex){
+
+                    }
+                }
+            });
 
             adapter = new CommentRVAdapter(commentsLoaded);
             rv.setAdapter(adapter);
@@ -212,6 +356,18 @@ public class PostViewActivity  extends Activity{
                         Comment comment = new Comment();
                         comment.setNUM(CommentObj.getInt("Num"));
                         comment.setContent(CommentObj.getString("Content"));
+                        User user = new User();
+                        request.setURI(new URI("http://drycorporations.wc.lt/selectByNum.php?table=User&num=" + CommentObj.getInt("UserNum")));
+                        response = client.execute(request);
+                        String userR = GlobalMethods.convertStreamToString(response.getEntity().getContent());
+                        JSONObject userObj = new JSONObject(userR);
+                        user.setNUM(userObj.getInt("Num"));
+                        user.setUsername(userObj.getString("Username"));
+                        comment.setUser(user);
+                        if(!CommentObj.getString("Image").equals("")){
+                            comment.setImage(GlobalMethods.base64ToBitmap(CommentObj.getString("Image")));
+                            //Bitmap p = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+                        }
                         commentsLoaded.add(comment);
                     }
                 }
@@ -255,6 +411,13 @@ class CommentRVAdapter extends RecyclerView.Adapter<CommentRVAdapter.CommentsVie
     public void onBindViewHolder(CommentsViewHolder topicsViewHolder, int i) {
         //topicsViewHolder.txbUsername.setText(comments.get(i).getUser().getUsername());
         topicsViewHolder.txbContent.setText(comments.get(i).getContent());
+        if(comments.get(i).getImage() == null) {
+            topicsViewHolder.imgCommentImage.setVisibility(View.GONE);
+        } else {
+            topicsViewHolder.imgCommentImage.setVisibility(View.VISIBLE);
+            topicsViewHolder.imgCommentImage.setImageBitmap(comments.get(i).getImage());
+        }
+        topicsViewHolder.txbUsername.setText(comments.get(i).getUser().getUsername());
     }
 
     @Override
@@ -279,7 +442,6 @@ class CommentRVAdapter extends RecyclerView.Adapter<CommentRVAdapter.CommentsVie
             txbUsername = (TextView)itemView.findViewById(R.id.comment_username);
             txbContent = (TextView)itemView.findViewById(R.id.comment_info);
             imgCommentImage = (ImageView)itemView.findViewById(R.id.comment_image);
-            imgCommentImage.setVisibility(View.GONE);
         }
     }
 

@@ -1,5 +1,7 @@
 package com.dry.POCO;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by yakov on 24/04/2015.
  */
@@ -8,6 +10,8 @@ public class Comment extends BaseEntry {
     private String content;
     private int votesup;
     private boolean didithelp;
+
+    private Bitmap image;
 
     public Comment(){}
 
@@ -41,5 +45,13 @@ public class Comment extends BaseEntry {
 
     public boolean getDidithelp(){
         return this.didithelp;
+    }
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 }
