@@ -3,6 +3,7 @@ package com.dry.idk.idk;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
@@ -57,6 +58,8 @@ public class PostViewActivity  extends Activity{
     ImageView post_votedown;
     int SelectedTopicNum;
     Topic currentTopic;
+
+    SwipeRefreshLayout swipeLayout;
 
     boolean isInfoLonest = false;
     boolean isOpen = false;
@@ -294,6 +297,27 @@ public class PostViewActivity  extends Activity{
 
             adapter = new CommentRVAdapter(commentsLoaded);
             rv.setAdapter(adapter);
+
+            swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_topic);
+            swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    commentsLoaded.removeAll(commentsLoaded);
+                    updateListFromDB();
+                    adapter.notifyDataSetChanged();
+                    //swipeLayout.setRefreshing(false);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeLayout.setRefreshing(false);
+                        }
+                    }, 1000);
+                }
+            });
+            swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
         }
     }
 

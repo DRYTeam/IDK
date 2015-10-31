@@ -5,6 +5,7 @@
     <string name="copy_rights">DRY Corporations ©</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">הגדרות</string>
+    <string name="action_profile">פרופיל</string>
     <string name="login_username">שם משתמש</string>
     <string name="login_password">סיסמא</string>
     <string name="login_register">הרשמה</string>

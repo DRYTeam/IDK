@@ -141,6 +141,10 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_profile:
+                Intent profile = new Intent(this,ProfileActivity.class);
+                startActivity(profile);
+                return true;
             case R.id.action_newpost:
                 Intent intent = new Intent(this, newTextPostActivity.class);
                 intent.putExtra("Mode",Mode.Text);

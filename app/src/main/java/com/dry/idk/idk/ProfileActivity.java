@@ -22,6 +22,8 @@ public class ProfileActivity extends Activity  {
 
         UserName = (TextView) this.findViewById(R.id.profile_username_text);
         FacilityTV = (TextView) this.findViewById(R.id.prodile_facility_text);
+
+
         UserName.setText(GlobalVar.LoggedInUser.getUsername());
         FacilityTV.setText(GlobalVar.LoggedInUser.getFacility().getName());
     }
